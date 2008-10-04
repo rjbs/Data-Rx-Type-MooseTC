@@ -65,6 +65,7 @@ sub check {
   my ($self, $value) = @_;
 
   return unless $self->{tc}->check($value);
+  return 1;
 }
 
 1;
