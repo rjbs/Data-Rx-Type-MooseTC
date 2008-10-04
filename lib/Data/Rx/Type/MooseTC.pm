@@ -16,7 +16,7 @@ use Moose::Util::TypeConstraints ();
     prefix  => {
       moose => 'tag:rjbs.manxome.org,2008-10-04:rx/moose/',
     },
-    plugins => [ 'Data::Rx::Type::MooseTC' ]
+    type_plugins => [ 'Data::Rx::Type::MooseTC' ]
   });
 
   my $array_of_int = $rx->make_schema({
