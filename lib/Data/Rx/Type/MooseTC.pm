@@ -2,6 +2,7 @@ use strict;
 use warnings;
 package Data::Rx::Type::MooseTC;
 # ABSTRACT: experimental / proof of concept Rx types from Moose types
+use parent 'Data::Rx::CommonType::EasyNew';
 
 use Carp ();
 use Moose::Util::TypeConstraints ();
@@ -37,8 +38,8 @@ Moose type constraints may change their interface in the future.
 
 sub type_uri { 'tag:rjbs.manxome.org,2008-10-04:rx/moose/tc' }
 
-sub new_checker {
-  my ($class, $arg, $rx) = @_;
+sub guts_from_arg {
+  my ($class, $arg) = @_;
 
   Carp::croak("no type supplied for $class") unless my $mt = $arg->{moose_type};
 
@@ -55,16 +56,20 @@ sub new_checker {
   Carp::croak("could not make Moose type constraint from $mt")
     unless $tc->isa('Moose::Meta::TypeConstraint');
 
-  my $self = { tc => $tc };
-  bless $self => $class;
-
-  return $self;
+  return { tc => $tc };
 }
 
-sub check {
+sub assert_valid {
   my ($self, $value) = @_;
 
-  return unless $self->{tc}->check($value);
+  unless ($self->{tc}->check($value)) {
+    $self->fail({
+      error   => [ qw(type) ],
+      message => "found value does not pass type constraint",
+      value   => $value,
+    });
+  }
+
   return 1;
 }
 
