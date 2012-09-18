@@ -1,5 +1,10 @@
 Revision history for Data-Rx-Type-MooseTC
 
+{{$NEXT}}
+
+0.003     2012-09-18 10:59:05 America/New_York
+          update for structured failures and Data::Rx 0.200
+
 0.002     2008-10-04
           add explicit 'true' return to avoid confusion
 
