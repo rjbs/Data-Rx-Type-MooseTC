@@ -48,8 +48,8 @@ sub guts_from_arg {
   if (ref $mt) {
     $tc = $mt;
   } else {
-    package Moose::Util::TypeConstraints; # SUCH LONG IDENTIFIERS
-
+    package
+      Moose::Util::TypeConstraints; # SUCH LONG IDENTIFIERS
     $tc = find_or_parse_type_constraint( normalize_type_constraint_name($mt) );
   }
 
