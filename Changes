@@ -1,6 +1,8 @@
 Revision history for Data-Rx-Type-MooseTC
 
 {{$NEXT}}
+        - update author contact info
+        - document perl version window
 
 0.006     2013-12-22 21:50:19-0500 America/New_York
           update bugtracker and repo links
